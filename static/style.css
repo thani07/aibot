@@ -12,99 +12,121 @@ body {
   position: relative;
 }
 
-/* Background overlay for readability */
+/* Background overlay */
 body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(6px);
 }
 
 /* Chat container */
 .container {
   position: relative;
   z-index: 1;
-  max-width: 600px;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-  padding: 20px;
+  width: 90%;
+  height: 90vh;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  height: 80vh;
+  overflow: hidden;
 }
 
-/* Title */
-h1 {
-  color: #2c3e50;
+/* Header */
+header {
+  background: linear-gradient(135deg, #3498db, #2ecc71);
+  color: white;
+  padding: 15px;
   text-align: center;
-  margin-bottom: 5px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid rgba(255,255,255,0.3);
 }
+
 .subtitle {
-  color: #555;
-  text-align: center;
-  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: #f0f0f0;
+  margin: 5px 0 0;
 }
 
 /* Chatbox area */
 #chatbox {
   flex: 1;
-  border: none;
-  border-radius: 12px;
-  padding: 12px;
+  padding: 16px;
   overflow-y: auto;
-  background: #fefefe;
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+  background: #fdfdfd;
+  scroll-behavior: smooth;
 }
 
-/* Messages */
+/* Messages wrapper */
 .message {
-  margin: 8px 0;
   display: flex;
+  align-items: flex-end;
+  margin: 10px 0;
+  animation: fadeIn 0.3s ease;
 }
 
-.message.user {
-  justify-content: flex-end;
+/* Avatars */
+.message.bot::before,
+.message.user::before {
+  content: "";
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  margin: 0 8px;
 }
 
-.message.bot {
-  justify-content: flex-start;
+.message.bot::before {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/4712/4712100.png'); /* Bot icon */
+  order: -1;
 }
 
+.message.user::before {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1077/1077012.png'); /* User icon */
+}
+
+/* Chat bubbles */
 .message p {
-  max-width: 75%;
-  padding: 10px 14px;
-  border-radius: 18px;
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 20px;
   font-size: 15px;
   line-height: 1.4;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
 /* User bubble */
 .message.user p {
   background: #3498db;
   color: white;
-  border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 5px;
 }
 
 /* Bot bubble */
 .message.bot p {
   background: #e9f9ee;
   color: #2c3e50;
-  border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 5px;
 }
 
 /* Typing indicator */
 .typing {
   display: inline-block;
+  font-weight: bold;
+  color: #666;
 }
 .typing::after {
   content: " •••";
   animation: blink 1s infinite;
 }
 @keyframes blink {
-  0%, 100% { opacity: 0.2; }
+  0%, 100% { opacity: 0.3; }
   50% { opacity: 1; }
 }
 
@@ -112,7 +134,9 @@ h1 {
 .input-row {
   display: flex;
   gap: 10px;
-  margin-top: 12px;
+  padding: 12px;
+  background: #fff;
+  border-top: 1px solid #ddd;
 }
 
 #userInput {
@@ -122,25 +146,45 @@ h1 {
   border-radius: 25px;
   outline: none;
   font-size: 14px;
+  transition: 0.2s;
+}
+#userInput:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
 #sendBtn {
-  padding: 0 20px;
+  padding: 0 24px;
   border-radius: 25px;
-  background: #3498db;
+  background: linear-gradient(135deg, #3498db, #2ecc71);
   color: #fff;
   border: none;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.3s;
+  transition: transform 0.2s, background 0.3s;
 }
 #sendBtn:hover {
-  background: #2c80c8;
+  transform: scale(1.05);
 }
 
-.disclaimer {
-  font-size: 0.85em;
-  color: #666;
-  text-align: center;
-  margin-top: 10px;
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+  #chatbox {
+    padding: 10px;
+  }
+  .message p {
+    max-width: 80%;
+    font-size: 14px;
+  }
 }
