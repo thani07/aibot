@@ -1,0 +1,17 @@
+{
+  "covid-19": {
+    "symptoms": ["fever", "dry cough", "tiredness", "loss of taste or smell"],
+    "prevention": ["wear masks", "sanitize hands", "social distancing", "vaccination"],
+    "treatment": "Consult a doctor; follow WHO guidelines."
+  },
+  "malaria": {
+    "symptoms": ["fever", "chills", "headache", "nausea"],
+    "prevention": ["use mosquito nets", "eliminate standing water", "wear long sleeves"],
+    "treatment": "Consult a doctor for antimalarial drugs."
+  },
+  "dengue": {
+    "symptoms": ["high fever", "rash", "joint pain", "headache"],
+    "prevention": ["avoid mosquito bites", "use repellent", "eliminate stagnant water"],
+    "treatment": "Drink plenty of fluids and consult a doctor."
+  }
+}
