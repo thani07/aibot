@@ -5,18 +5,39 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>AI Health Chatbot</title>
   <link rel="stylesheet" href="/static/style.css">
+
+  <!-- Optional favicon (medical theme) -->
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2966/2966489.png" />
 </head>
 <body>
-  <div class="container">
-    <h1>AI-Driven Public Health Chatbot</h1>
-    <p class="subtitle">Ask about diseases, symptoms, prevention and basic guidance.</p>
-    <div id="chatbox" aria-live="polite"></div>
-    <div class="input-row">
-      <input id="userInput" type="text" placeholder="Type a question e.g. 'symptoms of dengue'">
-      <button id="sendBtn">Send</button>
+  <div class="container" role="main">
+    <header>
+      <h1>AI-Driven Public Health Chatbot</h1>
+      <p class="subtitle">Ask about diseases, symptoms, prevention, and guidance.</p>
+    </header>
+
+    <!-- Chatbox -->
+    <div id="chatbox" aria-live="polite" role="log">
+      <p class="placeholder">💬 Start by asking me something about health!</p>
     </div>
-    <p class="disclaimer">This chatbot provides educational info only and not medical advice.</p>
+
+    <!-- Input row -->
+    <div class="input-row" role="form" aria-label="Chat input area">
+      <input 
+        id="userInput" 
+        type="text" 
+        placeholder="Type a question e.g. 'symptoms of dengue'" 
+        aria-label="Type your question here"
+      />
+      <button id="sendBtn" aria-label="Send message">Send</button>
+    </div>
+
+    <p class="disclaimer">
+      ⚠️ This chatbot provides <strong>educational info only</strong> and is <strong>not medical advice</strong>.
+    </p>
   </div>
+
+  <!-- JavaScript -->
   <script src="/static/script.js"></script>
 </body>
 </html>
